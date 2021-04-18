@@ -1,10 +1,12 @@
 let j = require("../main");
 
-j.PARAMS.fromDays = 3;
-j.PARAMS.maxPerPage = 50;
+j.PARAMS.fromDays = 60;
+j.PARAMS.maxPerPage = 25;
 j.PARAMS.pageLimit = 1000;
-j.PARAMS.query = "node developer";
+j.PARAMS.query = "python";
 j.PARAMS.location = "";
+j.PARAMS.jobType = "";
+j.PARAMS.sort = "date";
 
 //---------------------------------------------------------------------------------------
 
