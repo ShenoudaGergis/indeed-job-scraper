@@ -44,17 +44,17 @@ The application is designed to follow the next pages, but the user can limit the
 ## URL paramters
 The `service.PARAMS` object contains for now 9 properties denoting the search criteria, this number is expected to be increased
 
-| Paramter   | Type        | Default value  |
-| -----------|:-----------:| --------------:|
-| query      | string      |       ""       |
-| location   | string      |       ""       |
-| sort       | string      |       ""       |
-| siteType   | string      |       ""       |
-| jobType    | string      |       ""       |
-| fromDays   | number      |       7        |
-| duplicate  | number      |       1        |
-| maxPerPage | number      |       25       |
-| pageLimit  | number      |       10       |
+| Paramter   | Type        | Default value  | Description                                                                       |
+| -----------|:-----------:|:--------------:|:---------------------------------------------------------------------------------:| 
+| query      | string      |       ""       | search query i.e `Java Developer`                                                 |
+| location   | string      |       ""       | city , state , zip code or 'remote'                                               |
+| sort       | string      |       ""       | should be `relevance` or `date`                                                   |
+| siteType   | string      |       ""       | should be `jobsite` or `employer`                                                 |
+| jobType    | string      |       ""       | should be one of `fulltime`, `parttime`, `contract`, `internship`, or `temporary` |
+| fromDays   | number      |       7        | number of days since a job was published                                          |
+| duplicate  | number      |       1        | `1` to filter duplication or `0` to enable them                                   |
+| maxPerPage | number      |       25       | maximum number of jobs per page                                                   |
+| pageLimit  | number      |       10       | maximum number of visited pages                                                   |
 
 ------
 ## TODO
