@@ -1,8 +1,8 @@
 {
 	"name": "indeed-scraper",
+	"author" : "Kirollos Nasr",
 	"description": "A node application to fetch jobs from indeed website",
 	"main": "./main.js",
-	"private": true,
 	"devDependencies": {
 		"@types/node": "^14.14.39"
 	},
@@ -10,5 +10,12 @@
 		"axios": "^0.21.1",
 		"cheerio": "*",
 		"html-pdf": "^2.2.0"
-	}
+	},
+	"keywords" : ["scrape" , "indeed" , "parse"],
+	"license"  : "MIT",
+	"repository": {
+    	"type": "git",
+    	"url": "https://github.com/ShenoudaGergis/Indeed-scraper.git"
+	},
+	"homepage" : "https://github.com/ShenoudaGergis/Indeed-scraper"
 }
