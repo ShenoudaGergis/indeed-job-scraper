@@ -1,17 +1,17 @@
-## Indeed-scraper
+## indeed-scraper
 A node.js application to scrape jobs from Indeed website
 
 ------
 
 ### Install
-`npm install indeed-scraper`
+`npm install indeed-job-scraper`
 
 ------
 
 ### How to use ?
 ```javascript
 //import the main module
-let service = require("indeed-scraper");
+let service = require("indeed-job-scraper");
 
 //you have to set the URL paramters within PARAMS constant
 service.PARAMS.query = "java developer"  //set the query of search
