@@ -1,18 +1,19 @@
 let j = require("../main");
 
-j.PARAMS.fromDays = 60;
-j.PARAMS.maxPerPage = 25;
-j.PARAMS.pageLimit = 1000;
-j.PARAMS.query = "python's developer";
-j.PARAMS.location = "";
-j.PARAMS.jobType = "";
-j.PARAMS.sort = "date";
+// j.PARAMS.queryAny  = "python";
+// j.PARAMS.pageLimit = 10;
+// j.PARAMS.radius = "20";
+// j.PARAMS.salary = "40000";
+// j.PARAMS.fromDays = 1;
+// j.PARAMS.sort = "data";
+// j.PARAMS.queryCompany = "Scopic";
+
 
 //---------------------------------------------------------------------------------------
 
-// j.getJobs().then((jobs) => {
-// 	console.log(jobs);
-// })
+j.getJobs().then((jobs) => {
+	console.log(jobs);
+})
 
 //---------------------------------------------------------------------------------------
 

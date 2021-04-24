@@ -4,16 +4,24 @@ let { PdfGenerator } = require("./lib/pdfGenerator");
 //---------------------------------------------------------------------------------------
 
 const PARAMS = {
-	query 		: "python",
-	location 	: "",
-	sort 		: "",
-	siteType 	: "",
-	jobType 	: "",
-	fromDays 	: 7,
-	duplicate   : 1,
-	maxPerPage  : 25,
-	pageLimit   : 10
-}
+	queryAll 	 : "",
+	queryAny 	 : "",
+	queryNot 	 : "",
+	queryPhrase  : "",
+	queryTitle   : "",
+	queryCompany : "",
+	hireType  	 : "",
+	salary		 : "",
+	location 	 : "",
+	radius		 : "",
+	sort 		 : "",
+	siteType 	 : "",
+	jobType 	 : "",
+	fromDays 	 : "",
+	duplicate    : "",
+	maxPerPage   : "",
+	pageLimit    : "",
+};
 Object.seal(PARAMS);
 
 //---------------------------------------------------------------------------------------
@@ -32,7 +40,6 @@ function getPdf(path) {
 }
 
 //---------------------------------------------------------------------------------------
-
 
 exports.PARAMS  = PARAMS;
 exports.getJobs = getJobs;
