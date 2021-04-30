@@ -3,7 +3,7 @@
 	"author": "Kirollos Nasr",
 	"description": "A node application to fetch jobs from indeed website",
 	"main": "./main.js",
-	"version": "2.0.1",
+	"version": "2.1.0",
 	"devDependencies": {
 		"@types/node": "^14.14.39"
 	},
