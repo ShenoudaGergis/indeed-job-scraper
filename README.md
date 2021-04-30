@@ -54,6 +54,7 @@ The `service.PARAMS` object contains for now 9 properties denoting the search cr
 | queryTitle  |       ""              | any word should be found in a job title                                                        |
 | queryCompany|       any             | company should be in result                                                                    |
 | hireType    |       any             | `directhire` to fetch jobs directly from companies only                                        |
+| level       |       any             | `entry_level` , `mid_level` or `senior_level`                                                  |
 | salary      |       any             | salary per year i.e `45K` , `30000` or salary range `45K - 90K`                                |
 | radius      |       0               | radius to search with i.e `30` miles or in exact location                                      |
 | location    |       any             | city , state , zip code or 'remote'                                                            |
@@ -67,7 +68,7 @@ The `service.PARAMS` object contains for now 9 properties denoting the search cr
 
 ------
 ## TODO
-- To enhance paramters filtering
+- To enhance paramters filtering :thumbsup:
 - To support other countries domain
 - To support advanced search criteria as possible :thumbsup:
 
