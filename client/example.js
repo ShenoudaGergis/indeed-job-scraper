@@ -1,13 +1,11 @@
 let j = require("../main");
 
-// j.PARAMS.queryAny  = "python";
-// j.PARAMS.pageLimit = 10;
-// j.PARAMS.radius = "20";
-// j.PARAMS.salary = "40000";
-// j.PARAMS.fromDays = 1;
-// j.PARAMS.sort = "data";
-// j.PARAMS.queryCompany = "Scopic";
-
+j.PARAMS.queryAny = "java developer"  //set the query of search
+j.PARAMS.level = "mid_level"
+j.PARAMS.fromAge = 2   //get jobs with at max 2 days from now
+j.PARAMS.maxPerPage = 10   //set how many jobs per page to visit
+j.PARAMS.pageLimit = 5  //set to visit only 5 pages if exists
+j.PARAMS.duplicate = "unique";
 
 //---------------------------------------------------------------------------------------
 

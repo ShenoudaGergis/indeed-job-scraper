@@ -11,6 +11,7 @@ const PARAMS = {
 	queryTitle   : "",
 	queryCompany : "",
 	hireType  	 : "",
+	level		 : "",
 	salary		 : "",
 	location 	 : "",
 	radius		 : "",
