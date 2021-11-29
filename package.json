@@ -1,16 +1,15 @@
 {
 	"name": "indeed-job-scraper",
-	"author": "Kirollos Nasr",
+	"author": "Kirollos Nasr (kirollos.nasr.shenouda@gmail.com)",
 	"description": "A node application to fetch jobs from indeed website",
-	"main": "./main.js",
-	"version": "2.1.0",
+	"version": "3.0.0",
 	"devDependencies": {
 		"@types/node": "^14.14.39"
 	},
 	"dependencies": {
-		"axios": "^0.21.1",
-		"cheerio": "*",
-		"html-pdf": "^2.2.0"
+		"axios": "^0.24.0",
+		"cheerio": "^1.0.0-rc.10",
+		"puppeteer": "^12.0.0"
 	},
 	"keywords": [
 		"scrape",
@@ -24,3 +23,4 @@
 	},
 	"homepage": "https://github.com/ShenoudaGergis/Indeed-scraper"
 }
+

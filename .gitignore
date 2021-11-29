@@ -1,3 +1,2 @@
-node_modules/
-client/jobs.pdf
-lib/test.js
+/node_modules
+/temp/*
