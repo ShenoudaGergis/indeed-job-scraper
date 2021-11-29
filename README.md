@@ -1,3 +1,5 @@
+<img src="https://user-images.githubusercontent.com/54498156/143885256-bac41d82-c095-499e-898e-320753c5f667.png">
+
 ## Indeed Job Scraper :flashlight:
 A node.js application to scrape jobs from Indeed website
 
@@ -11,29 +13,23 @@ A node.js application to scrape jobs from Indeed website
 ### How to use ?
 ```javascript
 //import the main module
-let service = require("indeed-job-scraper");
+let { getJobsList , getJobsPDF } = require("indeed-job-scraper");
 
-//you have to set the URL paramters within PARAMS constant
-service.PARAMS.queryAny = "java developer"  //set the query of search
-service.PARAMS.salary = "50K"
-service.PARAMS.fromAge = 2   //get jobs with at max 2 days from now
-service.PARAMS.maxPerPage = 10   //set how many jobs per page to visit
-service.PARAMS.pageLimit = 5  //set to visit only 5 pages if exists
-
-//you have two ways to work with
-
-//first : to get the fetched jobs as an array of objects
-service.getJobs().then((jobs) => {
-  console.log(jobs)
-}).catch((error) => {
-  console.log(error)
+//get job list data
+getJobsList({
+	queryany : "Java Developer",
+	fromdays : 7
+}).then((jobs) => {
+	console.log(jobs); 
 })
 
-//seconde : to generate a PDF file with a specified path contains the fetched jobs
-service.getPdf("./jobs.pdf").then((path) => {
-  console.log(path)
-}).catch((error) => {
-  console.log(error)
+
+//get job list as a PDF report
+getJobsPDF({
+	queryany : "Java Developer",
+	fromdays : 7
+}).then((pdfBuffer) => {
+	fs.writeFileSync(path.join(__dirname , "./jobs.pdf") , pdfBuffer); //save jobs as a pdf file on disk
 })
 
 ```
@@ -43,7 +39,7 @@ The application is designed to follow the next pages, but the user can limit the
 
 ------
 ## URL paramters
-The `service.PARAMS` object contains for now 9 properties denoting the search criteria, this number is expected to be increased
+The `params` object contains 17 properties denoting the search criteria, this number is expected to be change in the future
 
 | Paramter    | Indeed Default value  | Description                                                                                    |
 |:-----------:|:---------------------:|:----------------------------------------------------------------------------------------------:| 
@@ -63,12 +59,21 @@ The `service.PARAMS` object contains for now 9 properties denoting the search cr
 | jobType     |       any             | should be one of `fulltime`, `parttime`, `contract`, `internship`, `temporary` or `commission` |
 | fromDays    |       all             | number of days since a job was published                                                       |
 | duplicate   |       unique          | `unique` to filter duplication or `all` to enable them                                         |
-| maxPerPage  |       10              | maximum number of jobs per page                                                                |
-| pageLimit   |       1               | maximum number of visited pages                                                                |
+| maxPerPage  |       10              | maximum number of jobs per page                                                                |                                                              
+
+------
+## configurations
+You can change app configurations at `./config.json` based on your needs
+
+| Paramter    | Default value             | Description                                                                |
+|:-----------:|:-------------------------:|:--------------------------------------------------------------------------:| 
+| base-URL    | "https://www.indeed.com/" | change the locality domain to restrict the search results to your country  |                           
+| max-pages   |       5                   | the maximum number of visited pages                                        |
+| verbose     |       true                | to deliver information about current processing                            |
 
 ------
 ## TODO
 - To enhance paramters filtering :thumbsup:
-- To support other countries domain
+- To support other countries domain :thumbsup:
 - To support advanced search criteria as possible :thumbsup:
 
