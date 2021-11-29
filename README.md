@@ -63,13 +63,15 @@ The `params` object contains 17 properties denoting the search criteria, this nu
 
 ------
 ## configurations
-You can change app configurations at `./config.json` based on your needs
+You can change app configurations based on your needs i.e `locality domain` 
 
-| Paramter    | Default value             | Description                                                                |
-|:-----------:|:-------------------------:|:--------------------------------------------------------------------------:| 
-| base-URL    | "https://www.indeed.com/" | change the locality domain to restrict the search results to your country  |                           
-| max-pages   |       5                   | the maximum number of visited pages                                        |
-| verbose     |       true                | to deliver information about current processing                            |
+```javascript
+let { config } = require("indeed-job-scraper");
+
+config["max-pages"] = 4 //the maximum number of visited pages
+config["base-URL"]  = "https://uk.indeed.com/"; //change the locality domain to restrict the search results to your country
+config["verbose"]   = true;  //to deliver information about current processing
+```
 
 ------
 ## TODO
