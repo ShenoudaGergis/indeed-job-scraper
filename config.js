@@ -4,8 +4,9 @@ let URL = require("url").URL;
 
 const defaults = {
 	"scrape" : {
-		"job-cards" 	   : "#mosaic-provider-jobcards > a",
+		"job-cards" 	   : ".jobsearch-ResultsList > li div.job_seen_beacon",
 		"job-title" 	   : "span[title]",
+		"job-link"		   : "h2.jobTitle > a.jcs-JobTitle",
 		"company-name" 	   : "span.companyName",
 		"company-location" : "div.companyLocation",
 		"company-rating"   : "span.ratingsDisplay",
@@ -23,6 +24,9 @@ const defaults = {
 let config = {
 	get ["job-cards"]() {
 		return defaults["scrape"]["job-cards"]
+	} ,
+	get ["job-link"]() {
+		return defaults["scrape"]["job-link"]
 	} ,
 	get ["job-title"]() {
 		return defaults["scrape"]["job-title"]
