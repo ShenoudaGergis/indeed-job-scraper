@@ -1,39 +1,57 @@
-let { parse }  = require("url");
-let PageParser = require("./lib/page-parser.js");
-let request    = require("./lib/request.js");
+let { parse } 	 					   = require("url");
+let PageParser 						   = require("./lib/page-parser.js");
+let BrowserPage    					   = require("./lib/browser.js");
 let { filterParams , checkParamValue } = require("./lib/utils/validator.js");
-let config     = require("./config.js");
+let config     						   = require("./config.js");
+let PdfGenerator 					   = require("./lib/pdfGenerator.js");
 
 //-----------------------------------------------------------------------------
 
 function getJobsList(params) {
-	params = checkParamValue(filterParams(params));
+	let page  = new BrowserPage();
+	params    = checkParamValue(filterParams(params));
 	let limit = config["max-pages"];
-	return (function _getJobsList(params , jobs = []) {
+
+	let jobs  = (function _getJobsList(params , jobs = []) {
 		if(limit-- === 0) return Promise.resolve(jobs);
-		return request(params).then((content) => {
+		let url = new URL("jobs" , config["base-URL"]);
+
+		return page.getContent(url, params).then((content) => {
+			if(config["verbose"]) console.log("\u2714" , url.href);
 			let parser = new PageParser(content);
 			let { pageJobs , nextLink } = parser.getContent();
-			if(config["verbose"]) console.log("==> nextLink :" , nextLink)
 			jobs = jobs.concat(pageJobs);
 			if(nextLink === null) return jobs;
 			else return _getJobsList(parse(nextLink , true)["query"] , jobs);
 		})
-	})(params , []);	
+	})(params , []);
+
+	return jobs.then((jobs) => {
+		return page.closePage().then(() => jobs);
+	});
 }
 
 //-----------------------------------------------------------------------------
 
 function getJobsPDF(params) {
-	let PdfGenerator = require("./lib/pdfGenerator.js");
 	return getJobsList(params).then((jobs) => {
-		if(config["verbose"]) console.log("==> generating pdf buffer...");		
-		return (new PdfGenerator(jobs)).generatePDF();
+		if(config["verbose"]) console.log("\u2714 generating PDF buffer starts...");
+		return (new PdfGenerator(jobs)).generatePDF().then((buffer) => {
+			if(config["verbose"]) console.log("\u2714 generating PDF buffer finished...");
+			return buffer;
+		})
 	})
+}
+
+//-----------------------------------------------------------------------------
+
+function release() {
+	return BrowserPage.closeBrowser();
 }
 
 //-----------------------------------------------------------------------------
 
 exports.getJobsList = getJobsList;
 exports.getJobsPDF  = getJobsPDF;
+exports.release     = release;
 exports.config      = config;

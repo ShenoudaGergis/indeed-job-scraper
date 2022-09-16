@@ -12,25 +12,37 @@ A node.js application to scrape jobs from Indeed website
 
 ### How to use ?
 ```javascript
-//import the main module
-let { getJobsList , getJobsPDF } = require("indeed-job-scraper");
+//import the required modules
+let { getJobsList , getJobsPDF, release, config } = require("../index.js");
+let fs   = require("fs");
+let path = require("path");
+
 
 //get job list data
 getJobsList({
-	queryany : "Java Developer",
-	fromdays : 7
-}).then((jobs) => {
-	console.log(jobs); 
+	query : "php",
+	fromdays : 1,
+	sitetype: "employer",
+	sort     : "date",
+	maxperpage : 20,
+	level      : "senior_level",
 })
+.then(console.log)
+.then(release);
+
+
 
 
 //get job list as a PDF report
 getJobsPDF({
-	queryany : "Java Developer",
-	fromdays : 7
+	query      : "Android Developer",
+	fromdays   : 2,
+	sort       : "date",
+	maxperpage : 20,
+	level      : "senior_level",
 }).then((pdfBuffer) => {
-	fs.writeFileSync(path.join(__dirname , "./jobs.pdf") , pdfBuffer); //save jobs as a pdf file on disk
-})
+	fs.writeFileSync(path.join(__dirname , "./jobs.pdf") , pdfBuffer);
+}).then(release);
 
 ```
 ------
@@ -43,12 +55,7 @@ The `params` object contains 17 properties denoting the search criteria, this nu
 
 | Paramter    | Indeed Default value  | Description                                                                                    |
 |:-----------:|:---------------------:|:----------------------------------------------------------------------------------------------:| 
-| queryAll    |       ""              | all words should be found in result                                                            |         
-| queryNot    |       ""              | each word must **NOT** be found in result                                                      |
-| queryAny    |       ""              | any word from this query should be found in result                                             |
-| queryPhrase |       ""              | this sentence should be found in result                                                        |
-| queryTitle  |       ""              | any word should be found in a job title                                                        |
-| queryCompany|       any             | company should be in result                                                                    |
+| query       |       ""              | search query      |
 | hireType    |       any             | `directhire` to fetch jobs directly from companies only                                        |
 | level       |       any             | `entry_level` , `mid_level` or `senior_level`                                                  |
 | salary      |       any             | salary per year i.e `45K` , `30000` or salary range `45K - 90K`                                |
