@@ -13,7 +13,7 @@ A node.js application to scrape jobs from Indeed website
 ### How to use ?
 ```javascript
 //import the required modules
-let { getJobsList , getJobsPDF, release, config } = require("../index.js");
+let { getJobsList , getJobsPDF, release, config } = require("indeed-job-scraper");
 let fs   = require("fs");
 let path = require("path");
 
