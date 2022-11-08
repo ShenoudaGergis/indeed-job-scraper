@@ -13,36 +13,47 @@ A node.js application to scrape jobs from Indeed website
 ### How to use ?
 ```javascript
 //import the required modules
-let { getJobsList , getJobsPDF, release, config } = require("indeed-job-scraper");
+let { getJobsList, getJobInfo, getJobsPDF, release, config } = require("indeed-job-scraper");
 let fs   = require("fs");
 let path = require("path");
 
+async function scrapeIndeed() {
 
-//get job list data
-getJobsList({
-	query : "php",
-	fromdays : 1,
-	sitetype: "employer",
-	sort     : "date",
-	maxperpage : 20,
-	level      : "senior_level",
-})
-.then(console.log)
-.then(release);
-
-
+	//get job list data
+	let jobs = await getJobsList({
+		query 		: "php",
+		fromdays 	: 1,
+		sitetype	: "employer",
+		sort     	: "date",
+		maxperpage 	: 20,
+		level      	: "senior_level"
+	});
+	console.log(jobs);
 
 
-//get job list as a PDF report
-getJobsPDF({
-	query      : "Android Developer",
-	fromdays   : 2,
-	sort       : "date",
-	maxperpage : 20,
-	level      : "senior_level",
-}).then((pdfBuffer) => {
+	let url = new URL(jobs[0]['job-link']);
+
+
+	//get single job full info 
+	let job = await getJobInfo(url);
+	console.log(job);
+
+
+	//get job list as a PDF report
+	let pdfBuffer = await getJobsPDF({
+		query      : "Android Developer",
+		fromdays   : 2,
+		sort       : "date",
+		maxperpage : 20,
+		level      : "senior_level",
+	});
 	fs.writeFileSync(path.join(__dirname , "./jobs.pdf") , pdfBuffer);
-}).then(release);
+
+
+	//release browser
+	release();
+}
+scrapeIndeed();
 
 ```
 ------
