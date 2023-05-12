@@ -2,13 +2,13 @@
 	"name": "indeed-job-scraper",
 	"author": "Kirollos Nasr (kirollos.nasr.shenouda@gmail.com)",
 	"description": "A node.js application to fetch jobs from indeed website",
-	"version": "4.0.0",
+	"version": "4.0.2",
 	"dependencies": {
-		"axios": "^0.26.0",
+		"axios": "^1.4.0",
 		"cheerio": "^1.0.0-rc.12",
-		"puppeteer": "^13.7.0",
-		"puppeteer-extra": "^3.3.4",
-		"puppeteer-extra-plugin-stealth": "^2.11.1",
+		"puppeteer": "^20.2.0",
+		"puppeteer-extra": "^3.3.6",
+		"puppeteer-extra-plugin-stealth": "^2.11.2",
 		"tmp": "^0.2.1"
 	},
 	"devDependencies": {

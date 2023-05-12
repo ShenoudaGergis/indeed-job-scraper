@@ -8,6 +8,8 @@ A node.js application to scrape jobs from Indeed website
 ### Install
 `npm install indeed-job-scraper`
 
+> :warning: Please be sure the browser executable is downloaded at ~/.cache/puppeteer/ after the installation process, otherwise you can download it directly by running node node_modules/indeed-job-scraper/node_modules/puppeteer/ from your working package, or simply run: npm run browser-install
+
 ------
 
 ### How to use ?
